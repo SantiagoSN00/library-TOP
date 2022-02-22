@@ -13,7 +13,7 @@
   }
 
 :root{
-
+    font-size: 62.5%;
     --main-bg-color: #3F0D12;
     --main-bg-light: #A71D31;
     --shadow: #8D775F;
@@ -24,12 +24,102 @@
 
   
   
-html {
+html,body,.layout {
     box-sizing: border-box;
+    margin: 0%;
     height: 100vh;
     width: 100vw;
   }
   *, *:before, *:after {
     box-sizing: inherit;
   }
-  
+html{
+    background-attachment:fixed;
+    background-image:url(./resources/bg.jpg);
+    color: #F1F0CC;
+    font-family: font-sec,sans-serif;
+}
+div *{
+    height: 100%;
+    width: 100%;
+
+}
+
+
+.layout{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: min(100px,20%) auto;
+}
+.flex-rows{
+    display:flex;
+}
+.filtros{
+    flex:1;
+}
+.bienvenida{
+    flex:2;
+
+}
+.controles{
+    flex:1;
+
+}
+.filtros,.bienvenida,.controles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: font-portada;
+    font-size: 5rem;
+}
+.exposicion {
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+        gap: 35px;
+}
+.exposicion>*{
+
+    font-size: 2rem;
+    aspect-ratio: 1;
+    margin-top: 35px;
+    margin-left: 15px;
+    opacity: 0.8;
+    display: inline;
+    background-size: cover;
+    background-image: url(https://static.wikia.nocookie.net/dark-souls/images/9/93/Dark_Souls_II_Portada.jpg/revision/latest?cb=20160801013021&path-prefix=es);
+}
+.texto-oculto{
+    display:flex;
+    flex-direction: column;
+}
+.descrip{
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+.centro{
+    flex:1;
+    display: flex;
+    justify-content: center;
+}
+.delete{
+    display: flex;
+    width: 50px;
+    height: 50px;
+
+}
+.edit{
+    display: flex;
+    width: 50px;
+    height: 50px;
+}
+.texto-oculto {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+  }
+  .text-visible {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 300ms;
+  }

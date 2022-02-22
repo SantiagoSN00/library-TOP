@@ -1,4 +1,22 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 MyStorage = window.localStorage
 
 let misJuegos = new Collection('Juegos Santi')
