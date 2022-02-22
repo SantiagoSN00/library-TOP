@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "font-portada";
+    src: url("./resources/fonts/BebasNeue-Regular.ttf");
+  }
+
+  @font-face {
+    font-family: "font-prin";
+    src: url("./resources/fonts/Roboto-BlackItalic.ttf");
+  }
+  @font-face {
+    font-family: "font-sec";
+    src: url("./resources/fonts/RobotoCondensed-Italic.ttf");
+  }
+
+:root{
+
+    --main-bg-color: #3F0D12;
+    --main-bg-light: #A71D31;
+    --shadow: #8D775F;
+    --ecru: #D5BF86;
+    --light: #F1F0CC;
+
+}
+
+  
+  
+html {
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
