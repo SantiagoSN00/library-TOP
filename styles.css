@@ -65,7 +65,6 @@ div *{
 
 }
 .flex-rows{
-    border-bottom: 3px solid black;
 }
 .controles button{
     background-color: transparent;
@@ -115,22 +114,25 @@ select:after {
 }
 .exposicion {
         display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
         gap: 35px;
-
+        padding-bottom: 10px;
 }
 .exposicion>*{
+    box-shadow: 10px 5px 5px black;
     font-size: 2rem;
     opacity: 0.8;
-    aspect-ratio: 1;
+    aspect-ratio: 0.8;
    }
    .setAtTop *{
        width: 0px;
        height: 0px;
    }
+   .texto-oculto{
+       display: flex;
+   }
    .texto-oculto *{
     visibility: hidden;
-    display:flex;
     flex-direction: column;
 }
    
@@ -138,7 +140,7 @@ select:after {
     display:flex;
     flex-direction: column;
     background-size: cover;
-    background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url("https://static.wikia.nocookie.net/dark-souls/images/9/93/Dark_Souls_II_Portada.jpg/revision/latest?cb=20160801013021&path-prefix=es");
+    background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/2048px-Question_mark_%28black%29.svg.png");
 }
 .descrip{
     padding-left: 20px;
@@ -149,6 +151,7 @@ select:after {
     flex:1;
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 .delete{
     display: flex;
@@ -165,7 +168,7 @@ select:after {
     height: 50px;
 }
 .imagebg{
-    background-image: url("https://static.wikia.nocookie.net/dark-souls/images/9/93/Dark_Souls_II_Portada.jpg/revision/latest?cb=20160801013021&path-prefix=es");
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Question_mark_%28black%29.svg/2048px-Question_mark_%28black%29.svg.png");
     background-size: cover;
 }
 

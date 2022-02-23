@@ -56,6 +56,7 @@ function getInputs(){
 
 
 
+
 /*
 <div class="row-flex">
                 <div class="texto-oculto imagebg">
@@ -75,6 +76,97 @@ function getInputs(){
 
 
 
+function addGameHTML(game){
+    let container = document.querySelector('.exposicion');
+    let juego = document.createElement('div');
+    juego.classList.add('row-flex')
+
+    let a = document.createElement('div');
+    let b = document.createElement('div');
+    let c = document.createElement('div');
+    let d = document.createElement('div');
+    let e = document.createElement('div');
+    let f = document.createElement('div');
+    let g = document.createElement('div');
+
+    let imgA = document.createElement('img')
+    let p = document.createElement('p')
+    let imgB = document.createElement('img')
+    
+    if(typeof(game.portada)==='string' && game.portada.length>10){
+    a.setAttribute('style',`background-image:url("${game.portada}"); background-size:cover;`)
+    a.classList.add('texto-oculto')
+    a.classList.add('setAtTop')
+    } else {
+        a.classList.add('texto-visible')
+    }
+    
+
+    b.innerHTML = `<div class="">TITULO: ${game.titulo} </div>`
+    b.classList.add('descrip');
+    
+    c.innerHTML = `<div class="">EMPRESA: ${game.desarrolladora}</div>`
+    c.classList.add('descrip');
+    c.setAttribute('style','padding-left:20px')
+    
+    d.innerHTML = `<div class="">GENERO: ${game.genero}</div>`
+    d.classList.add('descrip');
+    
+    e.innerHTML = `<div class="">PRECIO: ${game.precio}$</div>`
+    e.classList.add('descrip');
+
+    f.classList.add('descrip');
+
+    imgA.innerHTML = `<img class="" >`
+    imgA.classList.add('delete');
+    imgA.setAttribute('style','background-image: url("./resources/icons/Substract.png")')
+
+    p.innerHTML = ` <p class="">COMPLETADO</p>`
+    p.classList.add('centro')
+
+    imgB.innerHTML = `<img class="" >`
+    imgB.classList.add('edit')
+    imgB.setAttribute('style','background-image:url("./resources/icons/Settings.png")')
+
+    f.append(imgA)
+    f.append(p)
+    f.append(imgB)
+
+    a.append(g)
+    a.append(b)
+    a.append(c)
+    a.append(d)
+    a.append(e)
+    a.append(f)
+    juego.append(a)
+    console.log(juego)
+    container.append(juego)
+
+
+    
+
+let vistaJuegos = document.querySelectorAll('.texto-oculto')
+vistaJuegos.forEach(element => {
+    element.addEventListener('mouseenter',function(e){
+        console.log(e.target.children[1].children[0].innerHTML)
+        let titulo = e.target.children[1].children[0].innerHTML.slice(8,-1)
+        console.log(titulo)
+        e.target.classList.remove('texto-oculto')
+        e.target.classList.add('texto-visible')
+        e.target.setAttribute('style',`background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url("${misJuegos.getPortada(titulo)}");`)
+        e.target.classList.remove('setAtTop')
+
+    })
+    element.addEventListener('mouseleave',function(e){
+        let titulo = e.target.children[1].children[0].innerHTML.slice(8,-1)
+        e.target.classList.add('texto-oculto')
+        e.target.setAttribute('style',`background-image: url("${misJuegos.getPortada(titulo)}");background-size:cover`)
+        e.target.classList.remove('texto-visible')
+        e.target.classList.add('setAtTop')
+    })
+})
+        container.prepend(juego)
+    }
 
 
 
@@ -112,9 +204,19 @@ function Collection(nombre){
             return "ERROR, el juego ya existe en la coleccion"
         }
     }
-    
+    Collection.prototype.getPortada = function(title){
+        for(x of this.storage){
+            if(x.titulo === title) return x.portada
+        }
+    }
+
     Collection.prototype.showCollection = function(){
         return JSON.parse(MyStorage.getItem(this.name));
+    }
+    Collection.prototype.addToHTML = function(){
+        for(x of this.storage){
+            addGameHTML(x);
+        }
     }
     Collection.prototype.filtrar = function(){
 
