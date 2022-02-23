@@ -19,25 +19,28 @@
     --shadow: #8D775F;
     --ecru: #D5BF86;
     --light: #F1F0CC;
-
 }
 
   
   
-html,body,.layout {
+html,body,.overlay {
     box-sizing: border-box;
+
+    width: 100%;
+    height: 100%;
     margin: 0%;
-    height: 100vh;
-    width: 100vw;
   }
   *, *:before, *:after {
     box-sizing: inherit;
   }
 html{
+    padding: 10px;
     background-attachment:fixed;
+    background-size: cover;
     background-image:url(./resources/bg.jpg);
     color: #F1F0CC;
     font-family: font-sec,sans-serif;
+
 }
 div *{
     height: 100%;
@@ -58,12 +61,25 @@ div *{
     flex:1;
 }
 .bienvenida{
-    flex:2;
-
-}
-.controles{
     flex:1;
 
+}
+.flex-rows{
+    border-bottom: 3px solid black;
+}
+.controles button{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+.controles button img{
+    
+    filter:invert();
+    width: 50px;
+    height: 50px;
 }
 .filtros,.bienvenida,.controles{
     display: flex;
@@ -72,25 +88,57 @@ div *{
     font-family: font-portada;
     font-size: 5rem;
 }
+select{
+    background: none; 
+    top: 100%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: font-prin;
+  font-size: 3rem;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+}
+select:after {
+    border-color: #fff transparent transparent transparent;
+  }
+  select option{
+    background-color:#8D775F
+  }
+.controles{
+    flex:1;
+    justify-content: space-around;
+}
+.controles *{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
 .exposicion {
         display: grid;
         grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
         gap: 35px;
+
 }
 .exposicion>*{
-
     font-size: 2rem;
-    aspect-ratio: 1;
-    margin-top: 35px;
-    margin-left: 15px;
     opacity: 0.8;
-    display: inline;
-    background-size: cover;
-    background-image: url(https://static.wikia.nocookie.net/dark-souls/images/9/93/Dark_Souls_II_Portada.jpg/revision/latest?cb=20160801013021&path-prefix=es);
-}
-.texto-oculto{
+    aspect-ratio: 1;
+   }
+   .setAtTop *{
+       width: 0px;
+       height: 0px;
+   }
+   .texto-oculto *{
+    visibility: hidden;
     display:flex;
     flex-direction: column;
+}
+   
+.texto-visible{
+    display:flex;
+    flex-direction: column;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url("https://static.wikia.nocookie.net/dark-souls/images/9/93/Dark_Souls_II_Portada.jpg/revision/latest?cb=20160801013021&path-prefix=es");
 }
 .descrip{
     padding-left: 20px;
@@ -106,20 +154,82 @@ div *{
     display: flex;
     width: 50px;
     height: 50px;
+    filter:invert(1);
 
 }
 .edit{
+    filter:invert(1);
+    margin-right: 20px;
     display: flex;
     width: 50px;
     height: 50px;
 }
-.texto-oculto {
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s linear 300ms, opacity 300ms;
+.imagebg{
+    background-image: url("https://static.wikia.nocookie.net/dark-souls/images/9/93/Dark_Souls_II_Portada.jpg/revision/latest?cb=20160801013021&path-prefix=es");
+    background-size: cover;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: end;
   }
-  .text-visible {
-    visibility: visible;
-    opacity: 1;
-    transition: visibility 0s linear 0s, opacity 300ms;
+.escondido{
+    display:none;
+}
+.formulario{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+}
+.formulario-content{
+        margin: 25px auto 100px auto;
+        border: 1px solid #999;
+        height: 85%;
+        width: 50%;
+}
+form {
+    font-size:1.5rem;
+    display:flex;
+    flex-direction: column;
+    padding: 25px;
+    box-shadow: 0 2px 5px #f5f5f5;
+    background: #eee;
   }
+form *{
+    flex:1;
+}
+form :first-child{
+    display: flex;
+}
+form :first-child *{
+    margin: 0;
+}
+form h1,form p{
+    color: #3F0D12;
+    margin: 0;
+    margin-bottom: 5px;
+}
+form div input{
+    height: 50%;
+    width: 80%;
+}
+form div *{
+    color:black;
+    height: 2ch;
+}
+
+.unselectable{
+    user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}

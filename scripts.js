@@ -1,25 +1,86 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 MyStorage = window.localStorage
 
 let misJuegos = new Collection('Juegos Santi')
+
+let vistaJuegos = document.querySelectorAll('.texto-oculto')
+vistaJuegos.forEach(element => {
+    element.addEventListener('mouseenter',function(e){
+        e.target.classList.toggle('texto-oculto')
+        e.target.classList.toggle('imagebg')
+        e.target.classList.toggle('texto-visible')
+        e.target.classList.toggle('setAtTop')
+
+    })
+    element.addEventListener('mouseleave',function(e){
+        e.target.classList.toggle('texto-oculto')
+        e.target.classList.toggle('imagebg')
+        e.target.classList.toggle('texto-visible')
+        e.target.classList.toggle('setAtTop')
+    })
+})
+
+let formulario = document.querySelector('.escondido')
+let add = document.getElementById('addGame')
+add.addEventListener("click",function(){
+    formulario.classList.toggle('escondido')
+})
+let closeForm = document.querySelector('.close')
+closeForm.addEventListener("click",function(){
+    formulario.classList.toggle('escondido')
+})
+
+/*
+let link = document.getElementById('source').value
+let juegoTitulo = document.getElementById('titulo').value
+let juegoDesarrolladora = document.getElementById('desarrolladora')
+let juegoGenero = document.getElementById('genero')
+let juegoPrecio = document.getElementById('precio')
+let juegoGanado = document.getElementById('ganado')
+*/
+let formularioJuego = document.querySelector('#formaJuegoNuevo')
+formularioJuego.addEventListener('submit',getInputs)
+
+function getInputs(){
+    
+    var formData = new FormData(formularioJuego)
+    let link = formData.get('link')+'---'+formData.get('titulo')+'---'+formData.get('desarrolladora')+'---'+formData.get('genero')+'---'+formData.get('precio')+'---'+formData.get('ganado');
+    let valores = link.split('---')
+    alert(valores)
+
+
+    let juego = new Game(valores[0],valores[1],valores[2],valores[3],valores[4],valores[5])
+    misJuegos.addGame(juego)
+}
+
+
+
+
+/*
+<div class="row-flex">
+                <div class="texto-oculto imagebg">
+                    <div class="descrip">TITULO: </div>
+                    <div class="descrip">EMPRESA: </div>
+                    <div class="descrip">GENERO:</div>
+                    <div class="descrip">PRECIO:</div>
+                    <div class="descrip">
+                        <img class="delete" src="./resources/icons/Substract.png" alt="Delete">
+                        <p class="centro">COMPLETADO</p>
+                        <img class="edit" src="./resources/icons/Settings.png" alt="Edit">
+                    </div>
+                </div>
+            </div>
+*/
+
+
+
+
+
+
+
+
+
+
 
 function recreateGames (){
     local = Object.keys(MyStorage)
@@ -100,6 +161,60 @@ function Game(portada,titulo,desarrolladora,genero,precio,ganado){
 
 }
 
+
+function crearForma(){
+    let div = document.createElement('div')
+    let div2 = document.createElement('div')
+    
+    let form = document.createElement('form')
+    div.classList.add('formulario')
+    div2.classList.add('formulario-content')
+
+    /*
+    console.log(form)
+    form.innerHTML = `<form action="">
+    <div>
+    <h1>Ingrese datos del juego</h1> <a class="close">X</a>
+    </div>
+    <div>
+        <p>Link a imagen del juego (si no tienes, pon 0)</p>
+    <label for=""></label><input type="text" name="src" value="0" required>
+    </div>
+
+    <div>
+        <p>Titulo del juego:</p>
+        <label for="titulo"></label><input type="text" name="titulo" required>
+    </div>
+
+    <div>
+        <p>Desarrolladora del juego</p>
+        <label for="desarrolladora"></label><input type="text" name="desarrolladora" required>
+    </div>
+
+    <div>
+        <p>Genero del juego</p>
+        <label for="genero"></label><input type="text" name="genero" required>
+    </div>
+
+    <div>
+        <p>Precio del juego</p>
+        <label for="precio"></label><input type="text" name="precio" required> $
+    </div>
+    <div>
+        <p>Completaste el juego alguna vez?</p>
+        <label for="ganado"></label><input type="text" name="ganado" required>
+    </div>
+    <button> Agregar juego! </button>
+</form>`
+*/
+    div2.append(form)
+    div.append(div2)
+    document.body.append(div)
+
+    let documento = document.querySelector('.escondido')
+    documento.classList.toggle('.escondido')
+    
+}
 
 let DS2 = new Game(0,"Dark Souls 2","FromSoftware","ARPG","3000",true);
 let Portal = new Game(0,"Portal","Valve","Puzzles","50",true)
