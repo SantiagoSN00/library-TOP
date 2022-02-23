@@ -3,6 +3,8 @@ MyStorage = window.localStorage
 
 let misJuegos = new Collection('Juegos Santi')
 
+
+
 let vistaJuegos = document.querySelectorAll('.texto-oculto')
 vistaJuegos.forEach(element => {
     element.addEventListener('mouseenter',function(e){
@@ -203,6 +205,7 @@ function Collection(nombre){
             alert("El juego ya existe en la coleccion!");
             return "ERROR, el juego ya existe en la coleccion"
         }
+        this.showCollection();
     }
     Collection.prototype.getPortada = function(title){
         for(x of this.storage){
@@ -317,6 +320,8 @@ function crearForma(){
     documento.classList.toggle('.escondido')
     
 }
+
+window.addEventListener('DOMContentLoaded', misJuegos.addToHTML());
 
 let DS2 = new Game(0,"Dark Souls 2","FromSoftware","ARPG","3000",true);
 let Portal = new Game(0,"Portal","Valve","Puzzles","50",true)
